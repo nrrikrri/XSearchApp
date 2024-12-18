@@ -1,7 +1,7 @@
 # Privacy policy for Chrome extensions developed
 ## Chrome拡張のプライバシーポリシー
 
-本プライバシーポリシーは、[@nrrikrri](https://github.com/heppokofrontend)（以下、「当開発者」）が開発したGoogleChromeの拡張機能(Extension)(以下、「拡張機能」とします。)の利用において、利用者の個人情報もしくはそれに準ずる情報を取り扱う際に、当開発者が遵守する方針を以下のとおり定めます。
+本プライバシーポリシーは、[@nrrikrri](https://github.com/nrrikrri)（以下、「当開発者」）が開発したGoogleChromeの拡張機能(Extension)(以下、「拡張機能」とします。)の利用において、利用者の個人情報もしくはそれに準ずる情報を取り扱う際に、当開発者が遵守する方針を以下のとおり定めます。
 
 ### 基本方針
 当開発者は、個人情報の重要性を認識し、個人情報を保護することが社会的責務であると考え、個人情報に関する法令を遵守し、拡張機能で取扱う個人情報の取得、利用、管理を適正に行います。
@@ -53,4 +53,4 @@
 
 ## 問い合わせ先
 拡張機能、又は個人情報の取扱いに関しては、下記のアカウントまでお問い合わせください。
-[@nrrikrri](https://github.com/heppokofrontend)
+[@nrrikrri](https://github.com/nrrikrri))
