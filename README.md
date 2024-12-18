@@ -54,4 +54,4 @@
 ## 問い合わせ先
 拡張機能、又は個人情報の取扱いに関しては、下記のアカウントまでお問い合わせください
 
-[@nrrikrri](https://github.com/nrrikrri))
+[@nrrikrri](https://github.com/nrrikrri)
