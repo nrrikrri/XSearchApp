@@ -1,57 +1,150 @@
-# Privacy policy for Chrome extensions developed
-## Chrome拡張のプライバシーポリシー
+# Yahoo Topics History Tracker
 
-本プライバシーポリシーは、[@nrrikrri](https://github.com/nrrikrri)（以下、「当開発者」）が開発したGoogleChromeの拡張機能(Extension)(以下、「拡張機能」とします。)の利用において、利用者の個人情報もしくはそれに準ずる情報を取り扱う際に、当開発者が遵守する方針を以下のとおり定めます。
+A web application for tracking and visualizing Yahoo Topics publishing history with persistent storage and period-based querying capabilities.
 
-### 基本方針
-当開発者は、個人情報の重要性を認識し、個人情報を保護することが社会的責務であると考え、個人情報に関する法令を遵守し、拡張機能で取扱う個人情報の取得、利用、管理を適正に行います。
+![Yahoo Topics History Tracker](https://github.com/user-attachments/assets/c9567a41-3503-4cb3-bfc1-6ecf608a07d4)
 
-### 適用範囲
-本プライバシーポリシーは、当開発者が開発した拡張機能においてのみ適用されます。
+## Features
 
-## 本拡張機能が収集するデータ
-本拡張機能は、ユーザーの選択テキストのみを一時的に利用します。このデータは以下の目的で使用されます：
+- **Persistent History Storage**: Append-only mechanism ensures history data is never lost
+- **Period-Based Querying**: Query history by date range for flexible data visualization
+- **Real-time Statistics**: Track total entries, categories, and date ranges
+- **User-Friendly Interface**: Clean, responsive web interface for easy interaction
+- **RESTful API**: Programmatic access to history data
 
-- ユーザーが選択したテキストを基にXで検索クエリを生成します。
+## API Endpoints
 
-### **収集するデータの詳細**:
-- **選択したテキスト**: ブラウザ内でユーザーが選択した文字列を検索クエリとして利用します。
-  
-本拡張機能は選択テキスト以外のデータ（個人情報やブラウザ履歴、位置情報など）を収集しません。
+### `/api/history` (GET)
+Query Yahoo Topics history by date range.
 
-## データの利用方法
-本拡張機能は、収集したデータを以下の目的でのみ利用します：
+**Query Parameters:**
+- `start` (required): Start date in ISO format
+- `end` (required): End date in ISO format
 
-- ユーザーが選択したテキストを利用し、Xの検索結果ページにアクセスする。
+**Response:**
+```json
+{
+  "history": [
+    {
+      "id": "5f2beef316fe8ef6b43d6cd0b3a169ef",
+      "title": "Sample Title",
+      "link": "https://example.com/article",
+      "timestamp": "2025-07-13T00:02:38.000Z",
+      "action": "added",
+      "categories": ["Category1", "Category2"]
+    }
+  ],
+  "total": 1,
+  "period": {
+    "start": "2025-01-13T00:00:00",
+    "end": "2025-07-14T23:59:59"
+  }
+}
+```
 
-選択されたテキストはブラウザ内でのみ処理され、外部サーバーに送信されることはありません。
+### `/api/update-history` (POST)
+Add new history entries with append-only storage.
 
-## データの共有
-本拡張機能は、収集したデータを第三者と共有しません。選択されたテキストは、直接Xの検索URL生成に使用されるのみであり、いかなる外部サーバーや第三者機関にも送信されません。
+**Request Body:**
+```json
+{
+  "entries": [
+    {
+      "title": "Sample Title",
+      "link": "https://example.com/article",
+      "categories": ["Category1", "Category2"],
+      "action": "added"
+    }
+  ]
+}
+```
 
-## データの保存
-本拡張機能は、いかなるユーザーデータも保存しません。ユーザーが選択したテキストは、一時的にメモリ上で処理されるのみであり、処理完了後に破棄されます。
+**Response:**
+```json
+{
+  "message": "History updated successfully",
+  "added": 1,
+  "entries": [...]
+}
+```
 
-## サードパーティのサービス
-本拡張機能は、Twitterのウェブ検索機能を利用します。Xにアクセスすることで、そのサービスの利用規約およびプライバシーポリシーが適用される場合があります。Xのプライバシーポリシーについては以下を参照してください：
-[Xプライバシーポリシー](https://x.com/en/privacy))
+### `/api/history/stats` (GET)
+Get statistics about the history data.
 
-## クッキーの使用
-本拡張機能はクッキーを使用しません。
+**Response:**
+```json
+{
+  "total": 4,
+  "categories": ["Technology", "News", "Business", "Economy"],
+  "actions": ["added", "updated", "removed"],
+  "dateRange": {
+    "earliest": "2025-01-13T10:30:00.000Z",
+    "latest": "2025-07-14T03:14:47.215Z"
+  }
+}
+```
 
-## セキュリティ
-本拡張機能は、ブラウザ内でデータを処理するため、インターネット経由でデータを外部に送信することはありません。
-そのため、ユーザーの個人情報や機密データが漏洩するリスクはありません。
+## Installation & Usage
 
-## ユーザーの権利
-本拡張機能はユーザーデータを収集しないため、データの削除、修正、確認といったリクエストは不要です。
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## プライバシーポリシーの変更
-本プライバシーポリシーは、拡張機能の機能や法的要件に応じて変更されることがあります。
-変更があった場合は、このページを更新し、改訂日を記載します。
-重大な変更が行われる場合は、Chrome Web Storeの説明欄に通知を追加する場合があります。
+2. **Start the server:**
+   ```bash
+   npm start
+   ```
 
-## 問い合わせ先
-拡張機能、又は個人情報の取扱いに関しては、下記のアカウントまでお問い合わせください
+3. **Access the application:**
+   Open your browser and navigate to `http://localhost:3000`
+
+## Data Structure
+
+Each history entry follows this structure:
+```json
+{
+  "id": "unique-uuid",
+  "title": "Entry title",
+  "link": "https://example.com/link",
+  "timestamp": "2025-07-13T00:02:38.000Z",
+  "action": "added|updated|removed",
+  "categories": ["Category1", "Category2"]
+}
+```
+
+## Development
+
+- **Server**: Node.js with Express
+- **Storage**: JSON file-based persistent storage
+- **Frontend**: Vanilla HTML, CSS, and JavaScript
+- **Port**: 3000 (localhost only)
+
+## File Structure
+
+```
+XSearchApp/
+├── server.js              # Main server file
+├── package.json           # Dependencies and scripts
+├── public/                # Frontend files
+│   ├── index.html         # Main HTML file
+│   ├── style.css          # Styling
+│   └── script.js          # Frontend JavaScript
+├── data/                  # Data storage (auto-created)
+│   └── history.json       # History data file
+└── README.md              # This file
+```
+
+## Requirements Met
+
+- ✅ **Persistent History Storage**: Append-only JSON file storage
+- ✅ **Period-Based History Visualization**: Date range queries with `/api/history`
+- ✅ **Development Environment**: Configured for localhost:3000
+- ✅ **Required APIs**: `/api/history` and `/api/update-history`
+- ✅ **Data Structure**: Implements specified JSON structure
+- ✅ **Frontend**: User-friendly interface for querying and adding entries
+- ✅ **No hokkaido_np**: Clean implementation without any hokkaido_np references
+
+## Author
 
 [@nrrikrri](https://github.com/nrrikrri)

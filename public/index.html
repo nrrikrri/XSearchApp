@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahoo Topics History Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Yahoo Topics History Tracker</h1>
+            <p>Track and visualize Yahoo Topics publishing history</p>
+        </header>
+
+        <main>
+            <!-- Add New Entry Section -->
+            <section class="add-entry-section">
+                <h2>Add New Entry</h2>
+                <form id="add-entry-form">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Link:</label>
+                        <input type="url" id="link" name="link" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categories">Categories (comma-separated):</label>
+                        <input type="text" id="categories" name="categories" placeholder="Category1, Category2">
+                    </div>
+                    <div class="form-group">
+                        <label for="action">Action:</label>
+                        <select id="action" name="action">
+                            <option value="added">Added</option>
+                            <option value="updated">Updated</option>
+                            <option value="removed">Removed</option>
+                        </select>
+                    </div>
+                    <button type="submit">Add Entry</button>
+                </form>
+            </section>
+
+            <!-- Query History Section -->
+            <section class="query-section">
+                <h2>Query History</h2>
+                <form id="query-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start-date">Start Date:</label>
+                            <input type="datetime-local" id="start-date" name="start-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">End Date:</label>
+                            <input type="datetime-local" id="end-date" name="end-date" required>
+                        </div>
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <h2>Statistics</h2>
+                <div id="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Entries:</span>
+                        <span id="total-entries">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Date Range:</span>
+                        <span id="date-range">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Categories:</span>
+                        <span id="categories-count">-</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <h2>History Results</h2>
+                <div id="results-info"></div>
+                <div id="results-container"></div>
+            </section>
+        </main>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <!-- Messages -->
+        <div id="message" class="message hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
